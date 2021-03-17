@@ -2,10 +2,8 @@ package com.pentazon.exceptions;
 
 import java.security.PrivilegedActionException;
 
-public class ProductException extends Exception{
+public class ProductException extends PentazonException{
 
-    public ProductException() {
-    }
 
     public ProductException(String message) {
         super(message);
@@ -21,7 +19,5 @@ public class ProductException extends Exception{
         super(cause);
     }
 
-    public ProductException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
-        super(message, cause, enableSuppression, writableStackTrace);
-    }
+
 }

@@ -3,15 +3,13 @@ package com.pentazon.product;
 import com.pentazon.exceptions.ProductException;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-public class ProductRepoMock {
+public class ProductDB {
     private Map<String,Product> mockProducts;
 
-    public ProductRepoMock(){
+    public ProductDB(){
         mockProducts= new HashMap<>();
         Product plantainChips= new Product("Adunni Chips","Savoury PlantainChips",new BigDecimal(50));
         plantainChips.setProductId("AD001");

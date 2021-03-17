@@ -1,6 +1,4 @@
-package com.pentazon;
-
-import com.pentazon.Address;
+package com.pentazon.customers;
 
 import java.util.List;
 
@@ -9,6 +7,7 @@ import java.util.List;
  * @@author Titus
  */
 public abstract class Customer {
+
     private Integer id;
     private String firstName;
     private String surname;
