@@ -1,6 +1,8 @@
 package com.pentazon.shopping;
 
+import com.pentazon.customers.Address;
 import com.pentazon.exceptions.ProductException;
+import com.pentazon.payment.PaymentCard;
 import com.pentazon.product.Product;
 import com.pentazon.product.ProductService;
 import com.pentazon.product.ProductServiceImpl;
@@ -15,32 +17,52 @@ import java.util.logging.Logger;
 
 public class Cart {
     private Logger logger=Logger.getLogger(Cart.class.getName());
-    private Map<String,CartItem> items;
+    private Map<String, Item> cartItems;
     private ProductService productService;
     private BigDecimal total=BigDecimal.ZERO;
+    private PaymentCard paymentCard;
+    private Address deliveryAddress;
+
+
+    public Address getDeliveryAddress() {
+        return deliveryAddress;
+    }
+
+    public void setDeliveryAddress(Address deliveryAddress) {
+        this.deliveryAddress = deliveryAddress;
+    }
+
+
+    public PaymentCard getPaymentCard() {
+        return paymentCard;
+    }
+
+    public void setPaymentCard(PaymentCard paymentCard) {
+        this.paymentCard = paymentCard;
+    }
 
     public Cart(){
-        items=new HashMap<>();
+        cartItems = new HashMap<>();
         productService= new ProductServiceImpl();
     }
     public void addToCart(Product product){
         if(isVerifiedProduct(product)){
-            CartItem item= items.get(product.getProductId());
+            Item item= cartItems.get(product.getProductId());
        if(item==null){
-           item= new CartItem(product);
+           item= new Item(product);
        }
             item.addItems(BigInteger.ONE.intValue());
-            items.put(product.getProductId(),item);
+            cartItems.put(product.getProductId(),item);
         }
     }
     public void addToCart(Product product,int quantity){
         if(isVerifiedProduct(product)){
-            CartItem item= items.get(product.getProductId());
+            Item item= cartItems.get(product.getProductId());
             if(item==null){
-                item= new CartItem(product);
+                item= new Item(product);
             }
             item.addItems(quantity);
-            items.put(product.getProductId(),item);
+            cartItems.put(product.getProductId(),item);
         }
     }
     private boolean isVerifiedProduct(Product product){
@@ -59,21 +81,21 @@ public class Cart {
     public boolean removeFromCart(Product product){
         boolean removed=false;
         if(product!=null){
-            this.items.remove(product.getProductId());
+            this.cartItems.remove(product.getProductId());
             removed=true;
         }
         return removed;
     }
 
-    public Map<String,CartItem> getProduct() {
-        return items;
+    public Map<String, Item> getCartItems() {
+        return cartItems;
     }
     public BigDecimal calculateCartTotal(){
-        if(!items.isEmpty()){
+        if(!cartItems.isEmpty()){
             this.total=BigDecimal.ZERO;
-            Iterator<CartItem>cartItems=items.values().iterator();
-            while (cartItems.hasNext()){
-                this.total=this.total.add(cartItems.next().getTotal());
+            Iterator<Item> cartItemIterator= cartItems.values().iterator();
+            while (cartItemIterator.hasNext()){
+                this.total=this.total.add(cartItemIterator.next().getTotal());
             }
         }
         return this.getTotal();

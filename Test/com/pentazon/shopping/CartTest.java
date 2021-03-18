@@ -21,37 +21,37 @@ Cart cart;
     }
     @Test
     void testThatWeCanAddToCart(){
-        assertTrue(cart.getProduct().isEmpty());
+        assertTrue(cart.getCartItems().isEmpty());
         Product plantainChips= new Product("Adunni Chips","Savoury PlantainChips",new BigDecimal(50));
         plantainChips.setProductId("AD001");
         cart.addToCart(plantainChips);
-        assertFalse(cart.getProduct().isEmpty());
+        assertFalse(cart.getCartItems().isEmpty());
     }
     @Test
     void addToCart(){
-        assertTrue(cart.getProduct().isEmpty());
+        assertTrue(cart.getCartItems().isEmpty());
         Product plantainChips= new Product("Adunni Chips","Savoury PlantainChips",new BigDecimal(50));
         plantainChips.setProductId("AD001");
         cart.addToCart(plantainChips);
-        assertFalse(cart.getProduct().isEmpty());
-        assertEquals(1,cart.getProduct().size());
+        assertFalse(cart.getCartItems().isEmpty());
+        assertEquals(1,cart.getCartItems().size());
         boolean result= cart.removeFromCart(plantainChips);
         assertTrue(result);
-        assertTrue(cart.getProduct().isEmpty());
+        assertTrue(cart.getCartItems().isEmpty());
 
     }
     @Test
     void calculateTotal(){
-        assertTrue(cart.getProduct().isEmpty());
+        assertTrue(cart.getCartItems().isEmpty());
         Product plantainChips= new Product("Adunni Chips","Savoury PlantainChips",new BigDecimal(50));
         plantainChips.setProductId("AD001");
         cart.addToCart(plantainChips);
         Product shirt=new Product("Vintage Shirt","Vintage Versace",new BigDecimal(5000));
         shirt.setProductId("AD003");
         cart.addToCart(shirt);
-        assertFalse(cart.getProduct().isEmpty());
-        assertEquals(2,cart.getProduct().size());
-        CartItem chipsItem=cart.getProduct().get(plantainChips.getProductId());
+        assertFalse(cart.getCartItems().isEmpty());
+        assertEquals(2,cart.getCartItems().size());
+        Item chipsItem=cart.getCartItems().get(plantainChips.getProductId());
         assertEquals(1,chipsItem.getQuantity());
         BigDecimal cartTotal= cart.calculateCartTotal();
         assertEquals(5050,cartTotal.intValue());

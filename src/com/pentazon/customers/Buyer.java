@@ -10,6 +10,11 @@ public class Buyer extends Customer {
 private List<PaymentCard> cards;
 private Cart cart;
 
+    public Buyer() {
+        cards=new ArrayList<>();
+        cart= new Cart();
+        this.setAddresses(new ArrayList<>());
+    }
     public Cart getCart() {
         return cart;
     }
@@ -18,9 +23,7 @@ private Cart cart;
         this.cart = cart;
     }
 
-    public Buyer() {
-    cards=new ArrayList<>();
-    }
+
 
     public List<PaymentCard> getCards() {
         return cards;

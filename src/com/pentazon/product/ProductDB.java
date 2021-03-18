@@ -11,6 +11,7 @@ public class ProductDB {
 
     public ProductDB(){
         mockProducts= new HashMap<>();
+
         Product plantainChips= new Product("Adunni Chips","Savoury PlantainChips",new BigDecimal(50));
         plantainChips.setProductId("AD001");
         mockProducts.put(plantainChips.getProductId(), plantainChips);

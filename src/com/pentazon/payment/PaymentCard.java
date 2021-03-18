@@ -3,11 +3,12 @@ package com.pentazon.payment;
 import java.time.LocalDate;
 import java.util.Date;
 
+
 public class PaymentCard {
     private String cardNumber;
     private String name;
     private LocalDate expiry;
-    private LocalDate issue;
+    private Date issue;
 
     public PaymentCard(String cardNumber, String name, LocalDate expiry) {
         this.cardNumber = cardNumber;
@@ -39,11 +40,11 @@ public class PaymentCard {
         this.expiry = expiry;
     }
 
-    public LocalDate getIssue() {
+    public Date getIssue() {
         return issue;
     }
 
-    public void setIssue(LocalDate issue) {
+    public void setIssue(Date issue) {
         this.issue = issue;
     }
 }
