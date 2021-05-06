@@ -8,26 +8,11 @@ import java.util.Map;
 public class ProductServiceImpl  implements ProductService{
     private ProductDB productDB = new ProductDB();
 
-    /**
-     * search for product with specified productId
-     *
-     * @param productId
-     * @return
-     * @@throws productException
-     */
-
-
     @Override
     public Product findProductById(String productId) throws ProductException {
         return productDB.getProductsById(productId);
     }
 
-    /**
-     * search for product with specified productId
-     *
-     * @param product
-     * @return
-     */
     @Override
     public boolean addProduct(Product product) throws ProductException {
         if(isValidProduct(product)){
